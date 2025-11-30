@@ -23,7 +23,7 @@ body {
 
 /* Meningkatkan kontras warna link navigasi untuk aksesibilitas */
 .navbar-nav .nav-link {
-  color: #333 !important; 
+  color: #333 !important;
   font-size: 16px;
   transition: color 0.3s;
 }
@@ -36,14 +36,16 @@ body {
 /* Hero Section */
 .hero {
   text-align: center;
-  padding: 80px 20px 60px; /* Padding dikembalikan ke nilai besar awal */
+  padding: 80px 20px 60px;
+  /* Padding dikembalikan ke nilai besar awal */
   background: linear-gradient(to bottom, #fff 0%, #ffffff 100%);
 }
 
 /* Hapus style .hero h1 di sini */
 
 .hero-image {
-  margin: 0 auto; /* Margin disesuaikan agar gambar langsung di bawah padding section */
+  margin: 0 auto;
+  /* Margin disesuaikan agar gambar langsung di bawah padding section */
   position: relative;
 }
 
@@ -75,7 +77,7 @@ body {
 .section-title {
   font-size: 64px;
   font-weight: normal;
-  margin-bottom: 50px; 
+  margin-bottom: 50px;
   letter-spacing: -3px;
 }
 
@@ -110,10 +112,10 @@ body {
   align-items: center;
 }
 
-.text-content .subtitle { 
+.text-content .subtitle {
   font-size: 20px;
   margin-top: 0;
-  margin-bottom: 30px; 
+  margin-bottom: 30px;
   color: #666;
   font-weight: 300;
 }
@@ -156,7 +158,7 @@ body {
 }
 
 .bullet-list {
-  margin-top: 0; 
+  margin-top: 0;
   list-style: none;
   margin-bottom: 40px;
 }
@@ -166,7 +168,7 @@ body {
   position: relative;
   color: #333;
   font-size: 20px;
-  line-height: 2; 
+  line-height: 2;
 }
 
 .bullet-list li::before {
@@ -178,17 +180,17 @@ body {
 
 /* Narasi di bagian Food Waste */
 .section-narasi {
-    margin-top: 40px; 
-    font-size: 20px;
-    color: #666;
-    font-style: italic;
+  margin-top: 40px;
+  font-size: 20px;
+  color: #666;
+  font-style: italic;
 }
 
 /* Why Important Section */
 .why-important {
   background: #fff;
   text-align: center;
-  margin-top: 80px; 
+  margin-top: 80px;
   margin-bottom: 60px;
 }
 
@@ -209,14 +211,14 @@ body {
   }
 
   .section-title {
-    font-size: 38px; 
+    font-size: 38px;
   }
 
-  .text-content .subtitle, 
+  .text-content .subtitle,
   .quote-text,
   .bullet-list li,
   .section-narasi {
-      font-size: 18px; 
+    font-size: 18px;
   }
 }
 
@@ -252,7 +254,7 @@ body {
 
 /* Section Misi di Halaman About */
 .mission-section {
-    padding: 60px 20px;
+  padding: 60px 20px;
 }
 
 
