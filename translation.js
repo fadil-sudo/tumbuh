@@ -1,25 +1,29 @@
 // Objek data terjemahan. Key (Bahasa Indonesia) dan Nilai (Bahasa Inggris)
 // menyertakan tag HTML inline untuk mempertahankan styling.
 const translations = {
-    // --- NAVIGASI ---
+    // --- NAVIGASI & UMUM ---
     "Misi": "Mission",
     "Solusi": "Solutions",
     "Tentang": "About",
     "Pilih Bahasa:": "Select Language:",
     "Lihat Selengkapnya": "View More", // Tombol
 
-    // --- INDEX.HTML ---
+    // --- INDEX.HTML: ZERO HUNGER ---
     "Apa itu Zero Hunger?": "What is Zero Hunger?",
     "Merupakan <strong>komitmen global</strong> untuk memastikan setiap orang, di mana pun, <strong>akses yang andal dan berkelanjutan</strong> <strong>makanan yang cukup, aman, dan bergizi setiap hari.</strong>": "It is a <strong>global commitment</strong> to ensure every person, everywhere, has <strong>reliable and sustainable access</strong> to adequate, safe, and nutritious food every day.",
     "\"Berdasarkan data dari Gasoedus, Indonesia menyumbang sekitar <span class=\"highlight\">49 juta ton sisa makanan setiap tahun</span>. Bahkandalam pedesaan memiliki akses pangan yang lebih buruk.\"": "\"Based on data from Gasoedus, Indonesia contributes around <span class=\"highlight\">49 million tons of food waste every year</span>. Even rural areas have worse food access.\"",
+    
+    // --- INDEX.HTML: FOOD WASTE ---
     "Mengurangi Food Waste": "Reducing Food Waste",
     "Belanja sesuai kebutuhan": "Shop according to needs",
     "Simpan makanan dengan metode yang benar": "Store food using correct methods",
     "Manfaatkan sisa makanan menjadi hidangan baru": "Turn leftovers into new dishes",
     "Dukung gerakan lokal anti mubazir": "Support local anti-waste movements",
     "Sebagian besar <span class=\"highlight\">makanan terbuang di tingkat konsumen rumahan tangga</span> dan layanan makanan. Penyebab utamanya <span class=\"highlight\">adalah</span> perencanaan makan yang buruk, penyimpanan tidak tepat, <span class=\"highlight\">dan</span> kurangnya pemahaman tentang masa simpan makanan.": "Most <span class=\"highlight\">food is wasted at the level of household consumers</span> and food services. The main causes <span class=\"highlight\">are</span> poor meal planning, improper storage, <span class=\"highlight\">and</span> a lack of understanding of food shelf life.",
+    
+    // --- INDEX.HTML: WHY IMPORTANT ---
     "Mengapa Ini Penting?": "Why Is This Important?",
-    " <span class=\"highlight\">Kelaparan bukan masalah jarak atau kelangkaan,</span> melainkan <span class=\"highlight\">ketimpangan akses dan kesadaran.</span> Selama makanan masih dibuang di satu sisi, sementara perut kosong di sisi lain, <span class=\"highlight\">kita belum mencapai keadilan pangan.</span> <span class=\"highlight\">Zero Hunger bukan hanya tujuan global,</span> ini <span class=\"highlight\">tanggung jawab kolektif</span> yang dimulai dari keputusan sehari-hari. <span class=\"highlight\">Setiap butir nasi yang dihargai</span> adalah <span class=\"highlight\">langkah nyata menuju dunia di mana semua orang layak tumbuh.</span> ": " <span class=\"highlight\">Hunger is not a problem of distance or scarcity,</span> but of <span class=\"highlight\">access inequality and awareness.</span> As long as food is being thrown away on one side, while stomachs are empty on the other, <span class=\"highlight\">we have not achieved food justice.</span> <span class=\"highlight\">Zero Hunger is not just a global goal,</span> it is a <span class=\"highlight\">collective responsibility</span> that starts with daily decisions. <span class=\"highlight\">Every grain of rice valued</span> is a <span class=\"highlight\">real step towards a world where everyone deserves to grow.</span> ",
+    "Kelaparan bukan masalah jarak atau kelangkaan, melainkan <span class=\"highlight\">ketimpangan akses dan kesadaran.</span> Selama makanan masih dibuang di satu sisi, sementara perut kosong di sisi lain, <span class=\"highlight\">kita belum mencapai keadilan pangan.</span> <span class=\"highlight\">Zero Hunger bukan hanya tujuan global,</span> ini <span class=\"highlight\">tanggung jawab kolektif</span> yang dimulai dari keputusan sehari-hari. <span class=\"highlight\">Setiap butir nasi yang dihargai</span> adalah <span class=\"highlight\">langkah nyata menuju dunia di mana semua orang layak tumbuh.</span>": "Hunger is not a problem of distance or scarcity, but <span class=\"highlight\">access inequality and awareness.</span> As long as food is being thrown away on one side, while stomachs are empty on the other, <span class=\"highlight\">we have not achieved food justice.</span> <span class=\"highlight\">Zero Hunger is not just a global goal,</span> it is a <span class=\"highlight\">collective responsibility</span> that starts with daily decisions. <span class=\"highlight\">Every grain of rice valued</span> is a <span class=\"highlight\">real step towards a world where everyone deserves to grow.</span>",
 
     // --- ABOUT.HTML ---
     "Dibalik 'Tumbuh'": "Behind 'Tumbuh'",
@@ -31,6 +35,7 @@ const translations = {
 
 // Fungsi utama untuk melakukan terjemahan
 function toggleLanguage() {
+    // Cek status toggle (ID: true, EN: false)
     const isIndonesian = document.getElementById('langToggle').checked;
     const elements = document.querySelectorAll('[data-translate-key]');
     const htmlTag = document.querySelector('html');
@@ -40,18 +45,18 @@ function toggleLanguage() {
 
     elements.forEach(el => {
         // Ambil key (Bahasa Indonesia) dari atribut data
-        // Trim untuk menghilangkan spasi berlebihan
-        const key = el.getAttribute('data-translate-key').trim(); 
+        // Menghilangkan spasi berlebihan dan baris baru di awal/akhir key
+        let key = el.getAttribute('data-translate-key').trim(); 
         
         // Cari terjemahan
         const translatedText = translations[key];
 
         if (translatedText) {
-            // Gunakan innerHTML untuk hampir semua elemen agar tag HTML inline (<strong>, <span>) dipertahankan
+            // Gunakan innerHTML untuk mempertahankan tag styling
             el.innerHTML = isIndonesian ? key : translatedText;
         } else {
-            // Jika tidak ada key dalam kamus, biarkan teks asli (ID)
-            console.warn(`Missing translation key for: ${key}`);
+            // Jika ada key yang tidak cocok, biarkan teks asli (ID) dan log error
+            console.warn(`Missing or Mismatched translation key for: ${key}`);
         }
     });
 
@@ -64,13 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const langToggle = document.getElementById('langToggle');
 
     if (langToggle) {
-        // Set status toggle berdasarkan preferensi yang tersimpan
         langToggle.checked = savedLang === 'id';
-        
-        // Atur bahasa awal saat memuat halaman
         toggleLanguage(); 
-        
-        // Pasang event listener
         langToggle.addEventListener('change', toggleLanguage);
     }
 });
